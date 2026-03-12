@@ -3,81 +3,91 @@
 <head>
   <meta charset="UTF-8">
   <title>SEG EXPO FLOOR</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-      max-width: 600px;
-      margin: auto;
-      background-color: #ffffff;
-      color: rgb(60, 60, 60);
+    * {
+      box-sizing: border-box;
     }
 
     body {
-        font-family: Arial, sans-serif;
-        padding: 20px;
-        max-width: 600px;
-        margin: auto;
-        background: url('SEG-UnfuickingStoppable2_Desktop-4K.jpg') no-repeat center center fixed;
-        background-size: cover;
-        position: relative;
-        z-index: 1;
-        color: rgb(60, 60, 60);
+      margin: 0;
+      font-family: Arial, sans-serif;
+      min-height: 100vh;
+      background: url('SEG-UnfuickingStoppable2_Desktop-4K.jpg') no-repeat center center fixed;
+      background-size: cover;
+      position: relative;
+      color: rgb(60, 60, 60);
+      display: flex;
+      justify-content: center;
+      align-items: center;   /* центрира по вертикала по default */
+      padding: 20px;
     }
 
     body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.85); /* избелване */
-    z-index: -1;
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.85);
+      z-index: -1;
     }
-  
+
+    .wrapper {
+      width: 100%;
+      max-width: 520px;
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 20px 18px 24px;
+      border-radius: 10px;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+    }
+
     h2 {
       text-align: center;
       color: rgb(203, 155, 127);
-      margin-bottom: 30px;
-      font-size: 28px;
+      margin: 0 0 20px;
+      font-size: 24px;
+      letter-spacing: 1px;
     }
-  
+
     label {
       display: block;
-      margin-top: 15px;
+      margin-top: 12px;
       font-weight: bold;
-      color: rgb(190, 192, 191);
-      font-size: 14px;
+      color: rgb(120, 122, 121);
+      font-size: 13px;
       letter-spacing: 0.5px;
     }
-  
-    input, select {
+
+    input,
+    select {
       width: 100%;
       padding: 10px;
       margin-top: 5px;
-      box-sizing: border-box;
       border: 2px solid rgb(190, 192, 191);
       border-radius: 6px;
       font-size: 16px;
       transition: border-color 0.2s;
+      background-color: #fff;
     }
-  
-    input:focus, select:focus {
+
+    input:focus,
+    select:focus {
       border-color: rgb(203, 155, 127);
       outline: none;
     }
-  
+
     .button-group {
       display: flex;
-      justify-content: space-between;
-      margin-top: 25px;
+      gap: 10px;
+      margin-top: 20px;
     }
-  
+
     button {
-      padding: 12px;
-      width: 48%;
-      font-size: 16px;
+      flex: 1;
+      padding: 11px;
+      font-size: 15px;
       font-weight: bold;
       background-color: rgb(203, 155, 127);
       color: white;
@@ -86,51 +96,93 @@
       cursor: pointer;
       transition: background-color 0.3s;
     }
-  
+
     button:hover {
       background-color: rgb(180, 130, 110);
     }
-  
+
     #result {
-      margin-top: 30px;
-      padding: 20px;
+      margin-top: 20px;
+      padding: 14px;
       background-color: #f9f9f9;
       border-left: 5px solid rgb(203, 155, 127);
-      font-size: 18px;
+      font-size: 15px;
       white-space: pre-line;
       color: rgb(60, 60, 60);
       border-radius: 6px;
+    }
+
+    /* Мобилна оптимизация */
+    @media (max-width: 768px) {
+      body {
+        /* нов mobile background */
+        background: url('SEG-UnfuickingStoppable2_Mobile-4K.jpg') no-repeat center center scroll;
+        background-size: cover;
+
+        /* център по вертикала и хоризонтала */
+        justify-content: center;
+        align-items: center;
+        padding: 16px;
+      }
+
+      .wrapper {
+        padding: 18px 14px 22px;
+        max-width: 100%;
+        border-radius: 8px;
+      }
+
+      h2 {
+        font-size: 20px;
+        margin-bottom: 16px;
+      }
+
+      input,
+      select {
+        font-size: 15px;
+        padding: 9px;
+      }
+
+      button {
+        font-size: 14px;
+        padding: 10px;
+      }
+
+      #result {
+        font-size: 14px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <h2>SEG EXPO FLOOR</h2>
+  <div class="wrapper">
+    <h2>SEG EXPO FLOOR</h2>
 
-  <form id="expo_floor">
-    <label for="edge">Edge type:</label>
-    <select id="edge" name="edge">
-      <option value="Normal">Normal</option>
-      <option value="LED">LED</option>
-      <option value="Wheelchair">Wheelchair</option>
-    </select>
+    <form id="expo_floor">
+      <label for="edge">Edge type:</label>
+      <select id="edge" name="edge">
+        <option value="Normal">Normal</option>
+        <option value="LED">LED</option>
+        <option value="Wheelchair">Wheelchair</option>
+      </select>
 
-    <label for="length">Length (m):</label>
-    <input type="number" id="length" name="length" min="1" max="9999" step="0.5" required>
+      <label for="length">Length (m):</label>
+      <input type="number" id="length" name="length" min="1" max="9999" step="0.5" required>
 
-    <label for="width">Width (m):</label>
-    <input type="number" id="width" name="width" min="1" max="9999" step="0.5" required>
+      <label for="width">Width (m):</label>
+      <input type="number" id="width" name="width" min="1" max="9999" step="0.5" required>
 
-    <div class="button-group">
+      <div class="button-group">
         <button type="submit">Calculate</button>
         <button type="button" id="restartBtn">Restart</button>
-    </div>
-  </form>
+      </div>
+    </form>
 
-  <div id="result"></div>
+    <div id="result"></div>
+  </div>
 
   <script>
-    document.getElementById('expo_floor').addEventListener('submit', function(event) {
+    document.getElementById('expo_floor').addEventListener('submit', function (event) {
       event.preventDefault();
 
       const edge = document.getElementById('edge').value;
@@ -143,24 +195,18 @@
       let output = `Edge type: ${edge}\nArea: ${area.toFixed(2)} m²\n`;
 
       if (edge === "Normal") {
-        let edge_100 = 0.0
-        let edge_50 = 0.0
-        if (perimeter - 4 >= 4){
-            if (length % 1 === 0.5){
-                edge_50 += 2
-            }
-            if (width % 1 === 0.5){
-                edge_50 += 2
-            }
-            edge_100 = perimeter - 4 - (edge_50 * 0.5)
-        }
-        else{
-            edge_50 = (perimeter - 4) / 0.5;
+        let edge_100 = 0.0;
+        let edge_50 = 0.0;
+        if (perimeter - 4 >= 4) {
+          if (length % 1 === 0.5) edge_50 += 2;
+          if (width % 1 === 0.5) edge_50 += 2;
+          edge_100 = perimeter - 4 - (edge_50 * 0.5);
+        } else {
+          edge_50 = (perimeter - 4) / 0.5;
         }
         const base_connector = 8 * area - perimeter;
         const edge_connector = perimeter * 2;
         const straight_edge_connector = 4 + edge_50 + edge_100;
-        
 
         output += `Expo Floor Stand On EDGE Small 100 cm: ${edge_100.toFixed(0)}\n`;
         output += `Expo Floor Stand On EDGE Small 50 cm: ${edge_50.toFixed(0)}\n`;
@@ -170,24 +216,18 @@
       }
 
       if (edge === "LED") {
-        let edge_100 = 0.0
-        let edge_50 = 0.0
-        if (perimeter - 4 >= 4){
-            if (length % 1 === 0.5){
-                edge_50 += 2
-            }
-            if (width % 1 === 0.5){
-                edge_50 += 2
-            }
-            edge_100 = perimeter - 4 - (edge_50 * 0.5)
-        }
-        else{
-            edge_50 = (perimeter - 4) / 0.5;
+        let edge_100 = 0.0;
+        let edge_50 = 0.0;
+        if (perimeter - 4 >= 4) {
+          if (length % 1 === 0.5) edge_50 += 2;
+          if (width % 1 === 0.5) edge_50 += 2;
+          edge_100 = perimeter - 4 - (edge_50 * 0.5);
+        } else {
+          edge_50 = (perimeter - 4) / 0.5;
         }
         const base_connector = 8 * area - perimeter;
         const edge_connector = perimeter * 2;
         const straight_edge_connector = 4 + edge_50 + edge_100;
-        
 
         output += `Expo Floor Stand On EDGE LED 100 cm: ${edge_100.toFixed(0)}\n`;
         output += `Expo Floor Stand On EDGE LED 50 cm: ${edge_50.toFixed(0)}\n`;
@@ -199,7 +239,6 @@
       if (edge === "Wheelchair") {
         const edge_wheelchair = perimeter * 2;
         const base_connector = (8 * area - perimeter) + perimeter * 2;
-        
 
         output += `Expo Floor Stand On EDGE WHEELCHAIR BLACK: ${edge_wheelchair.toFixed(0)}\n`;
         output += `Expo Floor Stand On BASE CONNECTOR: ${base_connector.toFixed(0)}\n`;
@@ -209,10 +248,10 @@
     });
 
     document.getElementById('restartBtn').addEventListener('click', function () {
-        document.getElementById('edge').value = "Normal";
-        document.getElementById('length').value = '';
-        document.getElementById('width').value = '';
-        document.getElementById('result').textContent = '';
+      document.getElementById('edge').value = "Normal";
+      document.getElementById('length').value = '';
+      document.getElementById('width').value = '';
+      document.getElementById('result').textContent = '';
     });
   </script>
 
